@@ -1,4 +1,14 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 
-@Controller('product')
-export class ProductController {}
+@Controller()
+export class ProductController {
+  @Get()
+  getProducts(): string {
+    return 'List of products';
+  }
+
+  @Post()
+  createProduct(@Body() body): string {
+    return 'Product created - ' + JSON.stringify(body);
+  }
+}
