@@ -6,7 +6,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { databaseConfig } from './config/database.config';
 import { join } from 'path';
 import { ProductModule } from './product/product.module';
-
 @Module({
   imports: [
     ConfigModule.forRoot({
