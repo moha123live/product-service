@@ -43,6 +43,10 @@ class ProductVariantDto {
 
   @IsBoolean()
   @IsOptional()
+  is_active?: boolean;
+
+  @IsBoolean()
+  @IsOptional()
   is_primary?: boolean;
 }
 
