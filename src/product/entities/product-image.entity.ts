@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { Product } from './product.entity';
 import { ProductVariant } from './product-variant.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity('product_images')
 export class ProductImage {
@@ -16,6 +17,7 @@ export class ProductImage {
   @ManyToOne(() => Product, (product) => product.images, {
     onDelete: 'CASCADE',
   })
+  @Exclude()
   product: Product;
 
   @ManyToOne(() => ProductVariant, (variant) => variant.images, {
@@ -37,5 +39,6 @@ export class ProductImage {
   sort_order: number;
 
   @CreateDateColumn()
+  @Exclude()
   created_at: Date;
 }

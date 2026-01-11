@@ -12,6 +12,7 @@ import {
 import { ProductVariant } from './product-variant.entity';
 import { ProductImage } from './product-image.entity';
 import { Category } from './category.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity('products')
 export class Product {
@@ -35,6 +36,7 @@ export class Product {
   is_active: boolean;
 
   @CreateDateColumn()
+  @Exclude()
   created_at: Date;
 
   @UpdateDateColumn()

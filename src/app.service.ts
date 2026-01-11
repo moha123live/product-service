@@ -1,8 +1,4 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class AppService {
-  getStatus(): string {
-    return 'Product Service is running';
-  }
-}
+export class AppService {}

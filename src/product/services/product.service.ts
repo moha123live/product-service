@@ -26,6 +26,10 @@ export class ProductService {
     private imageRepository: Repository<ProductImage>,
   ) {}
 
+  getStatus(): string {
+    return 'Product Service is running';
+  }
+
   async create(createProductDto: CreateProductDto): Promise<Product> {
     // Check if slug exists
     const existingProduct = await this.productRepository.findOne({

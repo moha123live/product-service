@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 import { Product } from './product.entity';
 import { ProductImage } from './product-image.entity';
+import { Exclude } from 'class-transformer';
 
 export enum UnitType {
   KG = 'kg',
@@ -29,6 +30,7 @@ export class ProductVariant {
   @ManyToOne(() => Product, (product) => product.variants, {
     onDelete: 'CASCADE',
   })
+  @Exclude()
   product: Product;
 
   @Column({ type: 'varchar', length: 100 })
@@ -63,8 +65,10 @@ export class ProductVariant {
   images: ProductImage[];
 
   @CreateDateColumn()
+  @Exclude()
   created_at: Date;
 
   @UpdateDateColumn()
+  @Exclude()
   updated_at: Date;
 }

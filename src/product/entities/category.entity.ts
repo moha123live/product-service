@@ -6,6 +6,7 @@ import {
   ManyToMany,
 } from 'typeorm';
 import { Product } from './product.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity('categories')
 export class Category {
@@ -19,6 +20,7 @@ export class Category {
   is_active: boolean;
 
   @ManyToMany(() => Product, (product) => product.categories)
+  @Exclude()
   products: Product[];
 
   @CreateDateColumn()
