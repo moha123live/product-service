@@ -10,17 +10,17 @@ import {
   HttpCode,
   HttpStatus,
   UseInterceptors,
+  ClassSerializerInterceptor,
 } from '@nestjs/common';
 import { ProductService } from '../services/product.service';
 import { CreateProductDto } from '../dto/create-product.dto';
 import { UpdateProductDto } from '../dto/update-product.dto';
 import { ProductFilterDto } from '../dto/product-filter.dto';
-import { ProductResponseInterceptor } from '../common/interceptors/response.interceptor';
 import { ResponseMessage } from '../common/decorators/response.decorator';
 import { MESSAGES } from '../constants/messages.constants';
 
 @Controller('products')
-@UseInterceptors(ProductResponseInterceptor)
+@UseInterceptors(ClassSerializerInterceptor)
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
