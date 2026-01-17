@@ -20,7 +20,7 @@ import {
   ResponseMessage,
   ResponseKey,
 } from '../common/decorators/response.decorator';
-import { MESSAGES, HTTP_STATUS } from '../constants/messages.constants';
+import { MESSAGES } from '../constants/messages.constants';
 
 @Controller('products')
 @UseInterceptors(ProductResponseInterceptor)
@@ -92,7 +92,7 @@ export class ProductController {
   }
 
   @Delete(':id')
-  @HttpCode(HTTP_STATUS.NO_CONTENT)
+  @HttpCode(HttpStatus.NO_CONTENT)
   @ResponseMessage(MESSAGES.PRODUCT.DELETED)
   async remove(@Param('id') id: string) {
     await this.productService.remove(id);
