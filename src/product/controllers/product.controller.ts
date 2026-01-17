@@ -16,10 +16,7 @@ import { CreateProductDto } from '../dto/create-product.dto';
 import { UpdateProductDto } from '../dto/update-product.dto';
 import { ProductFilterDto } from '../dto/product-filter.dto';
 import { ProductResponseInterceptor } from '../common/interceptors/response.interceptor';
-import {
-  ResponseMessage,
-  ResponseKey,
-} from '../common/decorators/response.decorator';
+import { ResponseMessage } from '../common/decorators/response.decorator';
 import { MESSAGES } from '../constants/messages.constants';
 
 @Controller('products')
@@ -30,72 +27,56 @@ export class ProductController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @ResponseMessage(MESSAGES.PRODUCT.CREATED)
-  @ResponseKey('product')
-  async create(@Body() createProductDto: CreateProductDto) {
-    const product = await this.productService.create(createProductDto);
-    return { product };
+  create(@Body() createProductDto: CreateProductDto) {
+    return this.productService.create(createProductDto);
   }
 
   @Get()
   @HttpCode(HttpStatus.OK)
   @ResponseMessage(MESSAGES.PRODUCT.PRODUCTS_RETRIEVED)
-  async findAll(@Query() filterDto: ProductFilterDto) {
-    return await this.productService.findAll(filterDto);
+  findAll(@Query() filterDto: ProductFilterDto) {
+    return this.productService.findAll(filterDto);
   }
 
   @Get('featured')
   @HttpCode(HttpStatus.OK)
   @ResponseMessage(MESSAGES.PRODUCT.FEATURED_RETRIEVED)
-  @ResponseKey('products')
-  async getFeatured(@Query('limit') limit?: number) {
-    const products = await this.productService.getFeaturedProducts(limit);
-    return { products };
+  getFeatured(@Query('limit') limit?: number) {
+    return this.productService.getFeaturedProducts(limit);
   }
 
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   @ResponseMessage(MESSAGES.PRODUCT.PRODUCT_RETRIEVED)
-  @ResponseKey('product')
-  async findOne(@Param('id') id: string) {
-    const product = await this.productService.findOne(id);
-    return { product };
+  findOne(@Param('id') id: string) {
+    return this.productService.findOne(id);
   }
 
   @Get('slug/:slug')
   @HttpCode(HttpStatus.OK)
   @ResponseMessage(MESSAGES.PRODUCT.PRODUCT_RETRIEVED)
-  @ResponseKey('product')
-  async findBySlug(@Param('slug') slug: string) {
-    const product = await this.productService.findBySlug(slug);
-    return { product };
+  findBySlug(@Param('slug') slug: string) {
+    return this.productService.findBySlug(slug);
   }
 
   @Get(':id/variants')
   @HttpCode(HttpStatus.OK)
   @ResponseMessage(MESSAGES.PRODUCT.VARIANT_RETRIEVED)
-  @ResponseKey('variants')
-  async getVariants(@Param('id') productId: string) {
-    const variants = await this.productService.getProductVariants(productId);
-    return { variants };
+  getVariants(@Param('id') productId: string) {
+    return this.productService.getProductVariants(productId);
   }
 
   @Patch(':id')
   @HttpCode(HttpStatus.OK)
   @ResponseMessage(MESSAGES.PRODUCT.UPDATED)
-  @ResponseKey('product')
-  async update(
-    @Param('id') id: string,
-    @Body() updateProductDto: UpdateProductDto,
-  ) {
-    const product = await this.productService.update(id, updateProductDto);
-    return { product };
+  update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
+    return this.productService.update(id, updateProductDto);
   }
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   @ResponseMessage(MESSAGES.PRODUCT.DELETED)
-  async remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string): Promise<void> {
     await this.productService.remove(id);
-    return { success: true };
   }
 }
