@@ -1,9 +1,13 @@
-export const PRODUCT_MESSAGES = {
+export const MESSAGES = {
   // Product Messages
   PRODUCT: {
     CREATED: 'Product created successfully',
     UPDATED: 'Product updated successfully',
     DELETED: 'Product deleted successfully',
+    PRODUCT_RETRIEVED: 'Product retrieved successfully',
+    PRODUCTS_RETRIEVED: 'Products retrieved successfully',
+    VARIANT_RETRIEVED: 'Product variants retrieved successfully',
+    FEATURED_RETRIEVED: 'Featured products retrieved successfully',
     NOT_FOUND: 'Product not found',
     SLUG_EXISTS: 'Product with this slug already exists',
     VARIANT_NOT_FOUND: 'Product variant not found',
@@ -37,6 +41,8 @@ export const PRODUCT_MESSAGES = {
     SLUG_REQUIRED: 'Product slug is required',
     SLUG_INVALID:
       'Slug must contain only lowercase letters, numbers, and hyphens',
+    SKU_INVALID:
+      'SKU must contain only uppercase letters, numbers, hyphens, and underscores',
     PRICE_INVALID: 'Price must be a positive number',
     STOCK_INVALID: 'Stock quantity must be a non-negative integer',
     UNIT_TYPE_INVALID:
@@ -44,6 +50,15 @@ export const PRODUCT_MESSAGES = {
     VARIANT_REQUIRED: 'At least one variant is required',
     CATEGORY_REQUIRED: 'At least one category is required',
     IMAGE_URL_REQUIRED: 'Image URL is required',
+    SERVER_ERROR: 'Internal server error',
+    VALIDATION_FAILED: 'Validation failed',
+    DUPLICATE_VALUE: 'Duplicate value violates unique constraint',
+    REFERENCE_NOT_EXIST: 'Referenced resource does not exist',
+    INVALID_FORMAT: 'Invalid ID format',
+    DATABASE_ERROR: 'Database error occurred',
+    SUCCESS: 'Success',
+    CREATED: 'Created successfully',
+    DELETED: 'Deleted successfully',
   },
 } as const;
 
@@ -59,16 +74,3 @@ export const HTTP_STATUS = {
   CONFLICT: 409,
   INTERNAL_SERVER_ERROR: 500,
 } as const;
-
-// Unit Types
-export const UNIT_TYPES = {
-  KG: 'kg',
-  G: 'g',
-  L: 'l',
-  ML: 'ml',
-  PACKS: 'packs',
-  PCS: 'pcs',
-  UNITS: 'units',
-} as const;
-
-export type UnitType = (typeof UNIT_TYPES)[keyof typeof UNIT_TYPES];

@@ -4,6 +4,7 @@ import {
   Column,
   ManyToOne,
   CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { Product } from './product.entity';
 import { ProductVariant } from './product-variant.entity';
@@ -41,4 +42,8 @@ export class ProductImage {
   @CreateDateColumn()
   @Exclude()
   created_at: Date;
+
+  @UpdateDateColumn()
+  @Exclude()
+  updated_at: Date;
 }

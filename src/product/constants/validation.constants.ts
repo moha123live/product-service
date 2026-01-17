@@ -22,7 +22,7 @@ export const VALIDATION = {
     PRICE_MAX: 1000000,
     STOCK_MIN: 0,
     STOCK_MAX: 1000000,
-    UNIT_VALUE_MIN: 0.001,
+    UNIT_VALUE_MIN: 0,
     UNIT_VALUE_MAX: 10000,
   },
 } as const;
